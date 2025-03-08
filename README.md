@@ -10,3 +10,5 @@ baekjoon
 11053 : 
     - 1. binary search
     - 2. DP
+10158 :
+    - Ad-Hoc ( 일반적인 알고리즘 없이 직관적이고 문제에 특화된 방법 )
