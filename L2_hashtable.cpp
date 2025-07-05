@@ -14,6 +14,10 @@ Hash table을 만들어서 순서대로 출력시키면 정렬 algorithm으로�
 
 using namespace std;
 
+
+char vect[10] = "BTABCQABC";
+char pattern[4] = "ABC";
+
 int isPattern(int idx)
 {
     for (size_t i=0; i<3; i++)
@@ -51,8 +55,6 @@ int main()
     }
 
     // Hashtable 이용해서 패턴찾기
-    char vect[10] = "BTABCQABC";
-    char pattern[4] = "ABC";
     int result = 0;
 
     for (size_t i=0; i<7; i++)
