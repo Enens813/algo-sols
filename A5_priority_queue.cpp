@@ -17,6 +17,12 @@ Min Heap은 부모 노드의 value 값이 자식보다 작거나 같은 완전�
 
 참고)
 <queue> 안에 구현되어있음
+methods
+ - push() : 노드 추가
+ - pop() : root 노드 제거
+ - top() : root 노드 반환
+ - empty() : 비어있으면 true
+ - size() : 노드 수 반환
 
 Reference: https://suyeon96.tistory.com/31
 */
@@ -147,14 +153,35 @@ public:
     bool empty(){
         return size ==0;
     }
+};
 
 
+// customizing type
+struct customNode {
+    int height;
+    int tax;
+
+    customNode(){
+        height = 0;
+        tax = 0;
+    }
+    customNode(int _height, int _tax){
+        height = _height;
+        tax = _tax;
+    }
+};
+
+// height 기준으로 큰 값이 먼저 오게 (max heap)
+struct Compare {
+    bool operator()(const customNode& a, const customNode& b) {
+        return a.height < b.height; // height가 클수록 우선순위 높음
+    }
 };
 
 int main()
 {
     // Max Heap
-    priority_queue<int, vector<int>, less<int>> pq;
+    priority_queue<int, vector<int>, less<int>> pq; // type, container, compare
 
     pq.push(5);
     pq.push(2);
@@ -174,7 +201,28 @@ int main()
     cout << endl;
 
 
+    // with customized type
+    priority_queue<customNode, vector<customNode>, Compare> pq2; // type, container, compare
 
+    pq2.push(customNode(5,1));
+    pq2.push(customNode(2,2));
+    pq2.push(customNode(8,3));
+    pq2.push(customNode(9,4));
+    pq2.push(customNode(14,5));
+
+    pq2.pop();
+    pq2.pop();
+
+    cout << "STL Max Heap Priority Queue with customized Type: ";
+    while (!pq2.empty())
+    {
+        cout << pq2.top().height << " ";
+        pq2.pop();
+    }
+    cout << endl;
+
+
+    // With DIY MaxHeap
     MaxHeap<int> PQ;
     PQ.push(5,5);
     PQ.push(2, 2);
